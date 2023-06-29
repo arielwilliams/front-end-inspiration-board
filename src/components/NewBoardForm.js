@@ -32,7 +32,7 @@ function NewBoardForm(props) {
       event.preventDefault();
       // props.createNewBoardForm(boardFormData);
       // setBoardFormData(INITIAL_FORM_DATA);
-      console.log('hello world');
+      console.log('Successfully pressed add new board');
     }
   
     return (

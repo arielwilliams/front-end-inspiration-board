@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import Card from './components/Card';
 import NewBoardForm from './components/NewBoardForm';
+import NewCardForm from './components/NewCardForm';
 
 // Edith and Ariel left off here. Created two useState ... 
 function App() {
@@ -43,6 +44,12 @@ const createNewBoard = (newBoardInfo) => {
     "board_id": null
   }};
 
+  const createNewCard = (newCardInfo) => {
+    // add card_id as a unique key for flask (when we connect to BE) 
+    const updateNewCardInfo = {
+      ...newCardInfo,
+      "card_id": null
+    }};
 
 return (
   <section>
@@ -53,33 +60,10 @@ return (
       updateLikes={updateLikes} 
       updateDelete={updateDelete}>
     </Card>  */}
+    <NewCardForm createNewCard={createNewCard}/>
   </section>
 );
 };
 
 export default App;
 
-
-
-
-// What we started with in App.js
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }

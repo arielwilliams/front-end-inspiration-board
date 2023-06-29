@@ -6,10 +6,42 @@ import { useState } from 'react';
 import Card from './components/Card';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
+import Board from './components/Board';
 
-// Edith and Ariel left off here. Created two useState ... 
+// NEXT STEPS**************************
+// create mock data here for boards (it will look like list of animals data)
+
+const INITIAL_BOARD_DATA = [
+  {
+    id: 100,
+    title: "Hello World Board",
+    owner: "Ariel"
+  },
+  {
+    id: 101,
+    title: "Henlo Board",
+    owner: "Edith"
+  },
+  {
+    id: 102,
+    title: "Where's Keiko Board",
+    owner: "Mel"
+  },
+];
+
+
+
+
+
+
+
+
 function App() {
   const [boardsData, setBoardsData] = useState([]);
+  // NEXT STEPS ****************************
+  // update our boardsData based on what we receive from BE request from boards
+  // just use pseudocode data for now until we connect to BE
+
   const [selectedBoard, setselectedBoard]  = useState({
     title: '',
     owner: '',
@@ -19,6 +51,7 @@ function App() {
 )
 
 
+// NEED TO UPDATE THIS WHEN WE CONNECT TO BE
 // useEffect( () => {
 //   axios.get('http://127.0.0.1:5000/')
 //     .then( (response) => {

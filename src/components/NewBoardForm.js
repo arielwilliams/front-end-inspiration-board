@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./NewBoardForm.css";
 
-const INITIAL_FORM_DATA = {
+const INITIAL_FORM_DATA_FOR_BOARD = {
   title: '',
   owner: '',
   preview: '',
@@ -10,7 +10,7 @@ const INITIAL_FORM_DATA = {
 };
 
 function NewBoardForm(props) {
-    const [boardFormData, setBoardFormData] = useState(INITIAL_FORM_DATA);
+    const [boardFormData, setBoardFormData] = useState(INITIAL_FORM_DATA_FOR_BOARD);
   
     const anInputChanged = (evt, key) => {
 

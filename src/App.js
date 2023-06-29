@@ -47,12 +47,12 @@ const createNewBoard = (newBoardInfo) => {
 return (
   <section>
     <h1>Inspiration Board</h1>
-    {/* <NewBoardForm createNewBoard={createNewBoard}/> */}
-    {/* <Card>
-      {/* // listOfCards={cards} 
-      // updateLikes={updateLikes} 
-      // updateDelete={updateDelete} */}
-    {/* </Card> */} 
+    <NewBoardForm createNewBoard={createNewBoard}/>
+    {/* <Card
+      listOfCards={cards} 
+      updateLikes={updateLikes} 
+      updateDelete={updateDelete}>
+    </Card>  */}
   </section>
 );
 };

@@ -5,23 +5,24 @@ import "./NewBoardForm.css";
 const INITIAL_FORM_DATA = {
   title: '',
   owner: '',
+  preview: '',
   board_id: ''
 };
-
-
 
 function NewBoardForm(props) {
     const [boardFormData, setBoardFormData] = useState(INITIAL_FORM_DATA);
   
-    const anInputChanged = (evt) => {
+    const anInputChanged = (evt, key) => {
+
+      console.log(evt)
   
-      if (evt.target.owner === "owner" && evt.target.value < 0) {
-        return
-      }
-  
+      // if (evt.target.owner === "owner" && evt.target.value < 0) {
+      //   return
+      // }
+      
       const newBoardFormData = {
         ...boardFormData,
-        [evt.target.owner]: evt.target.value
+        [key]: evt.target.value
       };
   
       setBoardFormData(newBoardFormData);
@@ -29,8 +30,9 @@ function NewBoardForm(props) {
   
     const handleFormSubmit = (event) => {
       event.preventDefault();
-      props.createNewBoardForm(boardFormData);
-      setBoardFormData(INITIAL_FORM_DATA);
+      // props.createNewBoardForm(boardFormData);
+      // setBoardFormData(INITIAL_FORM_DATA);
+      console.log('hello world');
     }
   
     return (
@@ -40,27 +42,22 @@ function NewBoardForm(props) {
           <label htmlFor="boardTitle">Title:</label>
           <input
             id="boardTitle"
-            owner="owner"
             type="text"
-            value={ boardFormData.owner }
-            onChange={ anInputChanged }
+            onBlur={(evt) => anInputChanged(evt, 'title') } // onBlur calls anonymous func that then calls anInputChanged func. You pass in the evt into func, that other func manages use state.
+            // func anInputChanged responds to onBlur when we LEAVE that form element text box
+            // you LITERALLY have to get off of it/change focus in order to UPDATE value in text box
           />
           <label htmlFor="board">Owner Name:</label>
           <input
             id="board"
-            owner="owner"
-            type="string"
-            value={ boardFormData.owner }
-            onChange={ anInputChanged }
+            type="text"
+            onBlur={(evt) => anInputChanged(evt, 'owner') }
           />
           <label htmlFor="boardPreview">Preview:</label>
-          <input
-            id="boardPreview"
-            owner="owner"
-            type="text"
-            value={ boardFormData.owner }
-            onChange={ anInputChanged }
-          />
+          <p>
+          {boardFormData.title} - {boardFormData.owner}
+          </p>
+      
           <input type="submit" value="Add new Board"></input>
         </form>
       </section>

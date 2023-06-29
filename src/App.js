@@ -54,14 +54,21 @@ const createNewBoard = (newBoardInfo) => {
 return (
   <section>
     <h1>Inspiration Board</h1>
-    <NewBoardForm createNewBoard={createNewBoard}/>
+      <NewBoardForm createNewBoard={createNewBoard}/>
     {/* <Card
       listOfCards={cards} 
       updateLikes={updateLikes} 
       updateDelete={updateDelete}>
     </Card>  */}
-    <NewCardForm createNewCard={createNewCard}/>
-  </section>
+      <NewCardForm createNewCard={createNewCard}/>
+      <h2>Boards</h2>
+      <ol className="boards__list">
+              {/* {boardsElements} */}
+            </ol>
+      <br></br>
+      <h2>Selected Board</h2>
+    </section>
+
 );
 };
 

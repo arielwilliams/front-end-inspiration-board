@@ -56,7 +56,7 @@ function App() {
 
 // NEED TO UPDATE THIS WHEN WE CONNECT TO BE
 // useEffect( () => {
-//   axios.get('https://back-end-inspiration-board-coffee-lovers.onrender.com/boards')
+//   axios.get('https://back-end-inspiration-board-coffee-lovers.onrender.com/boards/${board_id}/cards')
 //     .then( (response) => {
 //       const initialBoardFormData = [];
 //       response.data.forEach(board => {

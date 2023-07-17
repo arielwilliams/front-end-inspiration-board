@@ -50,16 +50,19 @@ function App() {
 
 )
 
+//  WE ONLY NEED USEEFFECT FOR BOARDS -> TO DISPLAY ALL BOARDS ON DOM, THAT IS WHAT USEEFFECT IS FOR
+// USE EFFECT IS USED FOR MAKING API CALLS EXTERNALLY, IT GETS YOU THE INFO 
+// grab the boards -> you want to set local state that is effected by that state to reflect the new info
 
 // NEED TO UPDATE THIS WHEN WE CONNECT TO BE
 // useEffect( () => {
 //   axios.get('https://back-end-inspiration-board-coffee-lovers.onrender.com/boards')
 //     .then( (response) => {
 //       const initialBoardFormData = [];
-//       response.data.forEach(animal => {
-//         initialAnimalData.push(animal);
+//       response.data.forEach(board => {
+//         initialBoardData.push(board);
 //       });
-//       setAnimals(initialAnimalData);
+//       setBoards(initialBoardData);
 //     })
 //     .catch( (error) => {
 //       console.log('error', error);

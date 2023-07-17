@@ -25,6 +25,7 @@ h1 {
 }
 
 h2 {
+  border-radius: 3%;
   border-bottom: 10px solid lightgrey;
   border: 4px dotted black;
   box-shadow: 0 0 5px 5px rgb(193, 159, 159);
@@ -149,5 +150,14 @@ footer {
 .btn {
   width: 100%;
   background-color: transparent;
+
+}
+#cardMessage {
+  width: 100%;
+  background-color: transparent;
+}
+
+#boardTitle, #board {
+  width: 100%;
 
 }

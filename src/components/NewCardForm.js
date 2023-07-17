@@ -39,6 +39,7 @@ function NewCardForm(props) {
           <input
             id="cardMessage"
             type="text"
+            className="invalid-form-input"
             onBlur={(evt) => anInputChanged(evt, 'message') } // onBlur calls anonymous func that then calls anInputChanged func. You pass in the evt into func, that other func manages use state.
             // func anInputChanged responds to onBlur when we LEAVE that form element text box
             // you LITERALLY have to get off of it/change focus in order to UPDATE value in text box

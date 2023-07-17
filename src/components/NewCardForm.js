@@ -50,7 +50,9 @@ function NewCardForm(props) {
           {cardFormData.message} 
           </p>
           
-          <input type="submit" value="Add new Card"  className='btn'></input>
+          <input type="submit" value="Add new Card" 
+                 className='btn'
+                 disabled={message.length === 0 || message.length > 40}></input>
           </section>
           
         </form>

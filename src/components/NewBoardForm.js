@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./NewBoardForm.css";
 
-const INITIAL_FORM_DATA_FOR_BOARD = {
+const initialBoardFormData = {
   title: '',
   owner: '',
-  preview: '',
   board_id: ''
 };
 
@@ -63,7 +62,9 @@ function NewBoardForm(props) {
           {boardFormData.title} - {boardFormData.owner}
           </p>
           <div className ='submit-form'>
-          <input type="submit" value="Add new Board" className='btn'></input>
+          <input type="submit" value="Add new Board" 
+                  className='btn'
+                  disabled={message.length === 0 || message.length > 40}></input>
           </div>
         </form>
       </section>

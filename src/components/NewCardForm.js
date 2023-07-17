@@ -4,7 +4,6 @@ import "./NewCardForm.css";
 
 const INITIAL_FORM_DATA_FOR_CARD = {
   message: '',
-  preview: '',
   card_id: '',
 };
 
@@ -52,7 +51,9 @@ function NewCardForm(props) {
           
           <input type="submit" value="Add new Card" 
                  className='btn'
-                 disabled={message.length === 0 || message.length > 40}></input>
+                //  disabled={message.length === 0 || message.length > 40}
+                 >
+                 </input>
           </section>
           
         </form>

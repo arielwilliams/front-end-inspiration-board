@@ -4,12 +4,11 @@ import "./NewBoardForm.css";
 
 const initialBoardFormData = {
   title: '',
-  owner: '',
-  board_id: ''
+  owner: ''
 };
 
 function NewBoardForm(props) {
-    const [boardFormData, setBoardFormData] = useState(INITIAL_FORM_DATA_FOR_BOARD);
+    const [boardFormData, setBoardFormData] = useState(initialBoardFormData);
   
     const anInputChanged = (evt, key) => {
 
@@ -55,7 +54,6 @@ function NewBoardForm(props) {
             className="invalid-form-input"
             onBlur={(evt) => anInputChanged(evt, 'owner') }
           />  </section>
-         
       
           <label htmlFor="boardPreview">Preview:</label>
           <p>
@@ -64,7 +62,9 @@ function NewBoardForm(props) {
           <div className ='submit-form'>
           <input type="submit" value="Add new Board" 
                   className='btn'
-                  disabled={message.length === 0 || message.length > 40}></input>
+                  // disabled={title.length === 0 || title.length > 40}
+                  >
+          </input>
           </div>
         </form>
       </section>

@@ -32,6 +32,7 @@ function NewCardForm(props) {
   
     return (
       <section className="Card">
+        <div className="card-div">
         <h2>Create New Card</h2>
         <form className="stack" onSubmit={handleFormSubmit}>
           <label htmlFor="cardMessage">Message:</label>
@@ -42,13 +43,17 @@ function NewCardForm(props) {
             // func anInputChanged responds to onBlur when we LEAVE that form element text box
             // you LITERALLY have to get off of it/change focus in order to UPDATE value in text box
           />
+          <section>
           <label htmlFor="cardPreview">Preview:</label>
           <p>
           {cardFormData.message} 
           </p>
-      
-          <input type="submit" value="Add new Card"></input>
+          
+          <input type="submit" value="Add new Card"  className='btn'></input>
+          </section>
+          
         </form>
+        </div>
       </section>
     )
   }

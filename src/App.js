@@ -85,22 +85,29 @@ const createNewBoard = (newBoardInfo) => {
     }};
 
 return (
-  <section>
+  <div>
     <h1>Inspiration Board</h1>
-      <NewBoardForm createNewBoard={createNewBoard}/>
-    {/* <Card
-      listOfCards={cards} 
-      updateLikes={updateLikes} 
-      updateDelete={updateDelete}>
-    </Card>  */}
-      <NewCardForm createNewCard={createNewCard}/>
-      <h2>Boards</h2>
-      <ol className="boards__list">
-              {/* {boardsElements} */}
-            </ol>
-      <br></br>
-      <h2>Selected Board</h2>
-    </section>
+    <div className='form-row'>
+      {/* <Card
+        listOfCards={cards} 
+        updateLikes={updateLikes} 
+        updateDelete={updateDelete}>
+      </Card>  */}
+      <section>
+        <NewBoardForm createNewBoard={createNewBoard}/>
+        <NewCardForm createNewCard={createNewCard}/>
+      </section>
+      <section>
+        <h2>Selected Board</h2>
+      </section>
+      <section>
+        <h2>Boards</h2>
+        <ol className="boards__list"> "text texty text"
+          {/* {boardsElements} */}
+        </ol>
+      </section>
+    </div>
+  </div>
 
 );
 };

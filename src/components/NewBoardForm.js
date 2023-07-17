@@ -47,18 +47,22 @@ function NewBoardForm(props) {
             // func anInputChanged responds to onBlur when we LEAVE that form element text box
             // you LITERALLY have to get off of it/change focus in order to UPDATE value in text box
           />
-          <label htmlFor="board">Owner Name:</label>
+          <section>
+          <label htmlFor="board">Owner Name: </label>
           <input
             id="board"
             type="text"
             onBlur={(evt) => anInputChanged(evt, 'owner') }
-          />
+          />  </section>
+         
+      
           <label htmlFor="boardPreview">Preview:</label>
           <p>
           {boardFormData.title} - {boardFormData.owner}
           </p>
-      
-          <input type="submit" value="Add new Board"></input>
+          <div className ='submit-form'>
+          <input type="submit" value="Add new Board" className='btn'></input>
+          </div>
         </form>
       </section>
     )

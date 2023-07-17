@@ -1,26 +1,33 @@
+
 body {
   margin: 3rem;
   font-family: 'Open Sans', sans-serif;
   color: black;
+  flex-wrap: 10%;
 }
 
 h1,
 h2 {
-  font-family: "Permanent Marker", cursive;
-  padding: 0.6em 1em;
+  font-family: "Century Gothic",Verdana,sans-serif;
+  padding: 0.6em 2em;
   display: inline-block;
   color: black;
+  margin: 3rem;
+  text-align:initial;
 }
 
 h1 {
-  background-color: rgb(172, 120, 128);
+  background-color: #ac7880;
   transform: rotate(-5deg) skew(-10deg);
+  -webkit-transform: rotate(-5deg) skew(-10deg);
+  border-radius: 50%;
+  box-shadow: 0 0 50px #a96464;
 }
 
 h2 {
-  /* border-bottom: 10px solid lightgrey; */
-  border: 2px solid black;
-  box-shadow: -15px 7px 1px black;
+  border-bottom: 10px solid lightgrey;
+  border: 4px dotted black;
+  box-shadow: 0 0 5px 5px rgb(193, 159, 159);
 }
 
 .boards__container {
@@ -31,9 +38,12 @@ h2 {
 .boards__list {
   max-height: 9rem;
   min-height: 9rem;
+  max-width: 9rem;
+  min-width: 9rem;
   overflow: scroll;
-  margin-right: 2rem;
-  border: black solid 1px;
+  margin-left: 3.5rem;
+  border: black dashed 1px;
+
 }
 
 .new-board-form__container,
@@ -45,7 +55,7 @@ h2 {
 
 .new-board-form__form,
 .new-card-form__form {
-  display: flex;
+  display: grid;
   flex-direction: column;
   margin-bottom: 2em;
   width: 100%;
@@ -73,11 +83,10 @@ h2 {
 
 .card-item {
   font-family: "Homemade Apple", cursive;
-  font-family: 'Concert One', cursive;
   background-color: rgb(255, 248, 165);
   box-shadow: -10px 7px 7px lightgrey;
   min-height: 200px;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
   padding: 2rem;
@@ -91,6 +100,7 @@ h2 {
   padding: 0;
   width: 100%;
   justify-content: space-evenly;
+  margin: 3rem;
 }
 
 .card-item__message {
@@ -105,6 +115,7 @@ h2 {
 
 input {
   box-sizing: content-box;
+  margin: .55rem;
 }
 
 .invalid-form-input {
@@ -120,11 +131,23 @@ footer {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
 }
 
 .content__container {
   flex: 1 0 auto;
+
 }
 
+.form-row {
+  flex-direction: row-reverse;
+  display: flex;
+}
+.submit-form {
+  text-align: center;
+}
+.btn {
+  width: 100%;
+  background-color: transparent;
 
-
+}

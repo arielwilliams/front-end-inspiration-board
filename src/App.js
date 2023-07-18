@@ -8,28 +8,6 @@ import NewCardForm from "./components/NewCardForm";
 import Board from "./components/Board";
 
 
-// NEXT STEPS**************************
-// create mock data here for boards (it will look like list of animals data)
-
-// const INITIAL_BOARD_DATA = [
-//   {
-//     id: 100,
-//     title: "Hello World Board",
-//     owner: "Ariel"
-//   },
-//   {
-//     id: 101,
-//     title: "Henlo Board",
-//     owner: "Edith"
-//   },
-//   {
-//     id: 102,
-//     title: "Where's Keiko Board",
-//     owner: "Mel"
-//   },
-// ];
-
-
 function App() {
   const emptyBoardData = [{
     id: 0,
@@ -37,8 +15,14 @@ function App() {
     owner: ''
   }]
 
+  const emptyCardData = [{
+    id: 0,
+    message: ''
+  }]
+
   const [boardsData, setBoardsData] = useState(emptyBoardData);
   const [selectedBoard, setSelectedBoard] = useState(emptyBoardData);
+  const [selectedCards, setCardsData] = useState(emptyCardData);
   // const [likedMessages, setLikedMessages] = useState(0);
   // NEXT STEPS ****************************
   // update our boardsData based on what we receive from BE request from boards
@@ -167,24 +151,35 @@ function App() {
 // };
 
 const selectBoard = (id) => {
-  axios
-  .get(`https://back-end-inspiration-board-coffee-lovers.onrender.com/boards`)
-  .then((result)=>{
-    console.log(result.data)
-    setSelectedBoard(result.data);
+  const board = boardsData.find((board) => board.board_id === id);
+  console.log("this is the value of board", board)
+  setSelectedBoard(board);
 
+  axios
+  .get(`https://back-end-inspiration-board-coffee-lovers.onrender.com/boards/${board.board_id}/cards`)
+  // response (cards) is the data received from BE 
+  .then((response)=>{
+    console.log("this is the cards data that comes back for the selected board", response.data)
+    setCardsData(response.data);
   })
   .catch((error)=>{
     console.log(error)
   });
 };
 
+
+
   return (
     <div>
       <h1>Inspiration Board</h1>
       <div className="form-row">
         {/* <Card listOfCards={Card} updateLikes={updateLikes}></Card> */}
-        <Card listOfCards={Card}></Card>
+        {/* <Card listOfCards={selectedCards}></Card> */}
+        <ol>{selectedCards.map((card) => (
+        <Card key={card.card_id} card={card} onBoardSelect={setSelectedBoard} simonsPropShouldHappenOnBoardSelect={selectBoard} />
+        ))}
+        </ol>
+        
         <section>
           {/* <NewBoardForm createNewBoard={createNewBoard} /> */}
           {/* <NewCardForm createNewCard={createNewCard} /> */}
@@ -198,7 +193,7 @@ const selectBoard = (id) => {
           <h2>Boards</h2>
           <ol>
           {boardsData.map((board) => (
-            <Board key={board.id} board={board} onBoardSelect={setSelectedBoard} />
+            <Board key={board.id} board={board} onBoardSelect={setSelectedBoard} simonsPropShouldHappenOnBoardSelect={selectBoard} />
           ))}
           </ol>
         </section>

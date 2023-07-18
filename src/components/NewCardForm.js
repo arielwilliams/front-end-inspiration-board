@@ -53,7 +53,7 @@ function NewCardForm(props) {
                  className='btn'
                 //  disabled={message.length === 0 || message.length > 40}
                  >
-                 </input>
+          </input>
           </section>
           
         </form>

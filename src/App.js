@@ -175,12 +175,7 @@ const selectBoard = (id) => {
       <div className="form-row">
         {/* <Card listOfCards={Card} updateLikes={updateLikes}></Card> */}
         {/* <Card listOfCards={selectedCards}></Card> */}
-        <section>
-        <ol>{selectedCards.map((card) => (
-        <Card key={card.card_id} card={card} onBoardSelect={setSelectedBoard} propShouldHappenOnBoardSelect={selectBoard} />
-        ))}
-        </ol>
-        </section>
+        
         <section>
           <NewBoardForm createNewBoard={createNewBoard} />
           {/* <NewCardForm createNewCard={createNewCard} /> */}
@@ -197,6 +192,15 @@ const selectBoard = (id) => {
             <Board key={board.id} board={board} onBoardSelect={setSelectedBoard} propShouldHappenOnBoardSelect={selectBoard} />
           ))}
           </ol>
+          <section className="cards__container">
+            <div className="card-items__containe">
+            <h2>Cool Card Boards</h2>
+        <ol>{selectedCards.map((card) => (
+        <Card key={card.card_id} card={card} onBoardSelect={setSelectedBoard} propShouldHappenOnBoardSelect={selectBoard} />
+        ))}
+        </ol>
+        </div>
+        </section>
         </section>
       </div>
     </div>

@@ -127,13 +127,13 @@ function App() {
   
     axios
       .post(
-        "https://back-end-inspiration-board-coffee-lovers.onrender.com/boards"
+        "https://back-end-inspiration-board-coffee-lovers.onrender.com/boards", newBoardFormData
         // updateNewBoardInfo
       )
       .then(() => {
-        const newBoardsArray = [...Board];
+        const newBoardsArray = [...boardsData];
         newBoardsArray.push(newBoardFormData);
-        setBoardsData([...boardsData, newBoardsArray ]);
+        // setBoardsData([...boardsData, newBoardsArray ]);
         // setBoardsData(newBoardsArray);
       })
       .catch((error) => {
@@ -194,7 +194,7 @@ const selectBoard = (id) => {
           </ol>
           <section className="cards__container">
             <div className="card-items__containe">
-            <h2>Cool Card Boards</h2>
+            <h2>Cards for {selectedBoard.title}</h2>
         <ol>{selectedCards.map((card) => (
         <Card key={card.card_id} card={card} onBoardSelect={setSelectedBoard} propShouldHappenOnBoardSelect={selectBoard} />
         ))}

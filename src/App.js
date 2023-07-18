@@ -176,7 +176,7 @@ const selectBoard = (id) => {
         {/* <Card listOfCards={Card} updateLikes={updateLikes}></Card> */}
         {/* <Card listOfCards={selectedCards}></Card> */}
         <ol>{selectedCards.map((card) => (
-        <Card key={card.card_id} card={card} onBoardSelect={setSelectedBoard} simonsPropShouldHappenOnBoardSelect={selectBoard} />
+        <Card key={card.card_id} card={card} onBoardSelect={setSelectedBoard} propShouldHappenOnBoardSelect={selectBoard} />
         ))}
         </ol>
         
@@ -193,7 +193,7 @@ const selectBoard = (id) => {
           <h2>Boards</h2>
           <ol>
           {boardsData.map((board) => (
-            <Board key={board.id} board={board} onBoardSelect={setSelectedBoard} simonsPropShouldHappenOnBoardSelect={selectBoard} />
+            <Board key={board.id} board={board} onBoardSelect={setSelectedBoard} propShouldHappenOnBoardSelect={selectBoard} />
           ))}
           </ol>
         </section>

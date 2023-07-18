@@ -5,10 +5,10 @@
 // export default Board;
 
 // This is the new implementation that works when you select a board. 
-const Board = ({ board, onBoardSelect, simonsPropShouldHappenOnBoardSelect }) => {
+const Board = ({ board, onBoardSelect, propShouldHappenOnBoardSelect }) => {
     const handleClick = () => {
     // onBoardSelect(board);
-    simonsPropShouldHappenOnBoardSelect(board.board_id);
+    propShouldHappenOnBoardSelect(board.board_id);
 };
 
 return (

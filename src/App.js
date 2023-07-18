@@ -118,28 +118,28 @@ function App() {
   //     });
   // }, []);
 
-  // const createNewBoard = (newBoardInfo) => {
-  //   // add board_id as a unique key for flask (when we connect to BE)
-  //   const updateNewBoardInfo = {
-  //     ...newBoardInfo,
-  //     board_id: null,
-  //   };
+  const createNewBoard = (newBoardFormData) => {
+    // add board_id as a unique key for flask (when we connect to BE)
+    // const updateNewBoardInfo = {
+    //   ...newBoardFormData,
+    //   board_id: null,
+    // };
   
-  //   axios
-  //     .post(
-  //       "https://back-end-inspiration-board-coffee-lovers.onrender.com/boards"
-  //       // updateNewBoardInfo
-  //     )
-  //     .then(() => {
-  //       const newBoardsArray = [...Board];
-  //       newBoardsArray.push(NewBoardForm);
-  //       setBoardsData(newBoardsArray);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-
-  
+    axios
+      .post(
+        "https://back-end-inspiration-board-coffee-lovers.onrender.com/boards"
+        // updateNewBoardInfo
+      )
+      .then(() => {
+        const newBoardsArray = [...Board];
+        newBoardsArray.push(newBoardFormData);
+        setBoardsData([...boardsData, newBoardsArray ]);
+        // setBoardsData(newBoardsArray);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
 
 // const createNewCard = (newCardInfo) => {
@@ -182,7 +182,7 @@ const selectBoard = (id) => {
         </ol>
         </section>
         <section>
-          {/* <NewBoardForm createNewBoard={createNewBoard} /> */}
+          <NewBoardForm createNewBoard={createNewBoard} />
           {/* <NewCardForm createNewCard={createNewCard} /> */}
         </section>
         <section>

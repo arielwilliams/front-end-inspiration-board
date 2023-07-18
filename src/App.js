@@ -1,8 +1,7 @@
 import React from "react";
 import "./App.css";
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Card from "./components/Card";
 import NewBoardForm from "./components/NewBoardForm";
 import NewCardForm from "./components/NewCardForm";
@@ -34,7 +33,9 @@ function App() {
   const emptyBoardData = [{
     id: 0,
     title: '',
-    owner: ''}]
+    owner: ''
+  }]
+
   const [boardsData, setBoardsData] = useState(emptyBoardData);
   // const [likedMessages, setLikedMessages] = useState(0);
   // NEXT STEPS ****************************
@@ -58,13 +59,17 @@ function App() {
         "https://back-end-inspiration-board-coffee-lovers.onrender.com/boards"
       )
       .then((response) => {
+        // create new array called initialBoardFormData
         const initialBoardFormData = [];
+        
+        // iterate over response data received from BE axios get
+        // push each object (board) into the array initialBoardFormData
         response.data.forEach((board) => {
           initialBoardFormData.push(board);
         });
-        console.log("initial form", initialBoardFormData)
+
+        // calls func setBoardData on the initialBoardFormData array to update it
         setBoardsData(initialBoardFormData);
-        console.log("after setting state", boardsData)
       })
       .catch((error) => {
         console.log("error", error);

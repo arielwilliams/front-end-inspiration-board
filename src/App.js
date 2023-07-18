@@ -7,6 +7,7 @@ import NewBoardForm from "./components/NewBoardForm";
 import NewCardForm from "./components/NewCardForm";
 import Board from "./components/Board";
 
+
 // NEXT STEPS**************************
 // create mock data here for boards (it will look like list of animals data)
 
@@ -179,10 +180,10 @@ function App() {
         </section>
         <section>
           <h2>Boards</h2>
-          <ol className="boards__list">
-            {" "}
-            "text texty text"
-            {/* {boardsElements} */}
+          <ol>
+          {boardsData.map((board) => (
+            <Board key={board.id} board={board} />
+          ))}
           </ol>
         </section>
       </div>

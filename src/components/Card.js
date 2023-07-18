@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 // - photo
 const Card = (props) => {
 
-
     const toggleLikes = () => {
         // We want event handler function to do two things:
             // update component's internal state
@@ -21,19 +20,24 @@ const Card = (props) => {
         props.updateDelete(props.id)
     }
 
-    return (<section className="card-item">
-        <li><p className='card-message'>{props.card.message}</p></li>
-        <ul className="card-controls">
-            <li><p>{props.card.likesCount} ** </p></li>
-            <li><p onClick={() => props.addOneLike(props.card)}> +1</p></li>
-        </ul>
-    </section>);
+    return (
+        <section className="card-item">
+            {/* if the card object exists AND it has a key called message then create this JSX */}
+            {props.card && props.card.message &&
+                <li><p className='card-message'>{props.card.message}</p></li>
+            }
+            <ul className="card-controls">
+                {/* <li><p>{props.card.likesCount} ** </p></li> */}
+                <li><p onClick={() => props.addOneLike(props.card)}> +1</p></li>
+            </ul>
+        </section>
+    );
 };
 
 
 // msg, like count, +1 card item, delete
 Card.propTypes = {
-  message: PropTypes.string.isRequired,
+  message: PropTypes.string,
   likesCount: PropTypes.func,
   addOneLike: PropTypes.func,
 }

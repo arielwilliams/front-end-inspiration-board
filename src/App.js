@@ -175,11 +175,12 @@ const selectBoard = (id) => {
       <div className="form-row">
         {/* <Card listOfCards={Card} updateLikes={updateLikes}></Card> */}
         {/* <Card listOfCards={selectedCards}></Card> */}
+        <section>
         <ol>{selectedCards.map((card) => (
         <Card key={card.card_id} card={card} onBoardSelect={setSelectedBoard} propShouldHappenOnBoardSelect={selectBoard} />
         ))}
         </ol>
-        
+        </section>
         <section>
           {/* <NewBoardForm createNewBoard={createNewBoard} /> */}
           {/* <NewCardForm createNewCard={createNewCard} /> */}

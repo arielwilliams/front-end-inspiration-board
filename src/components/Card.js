@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types'; 
+import "./Card.css";
 
 // The responsibility of this component is to be a reusable UI element that displays an Animal's
 // - name

@@ -142,13 +142,25 @@ function App() {
   }
 
 
-// const createNewCard = (newCardInfo) => {
+const createNewCard = (newCardFormData) => {
 //   // add card_id as a unique key for flask (when we connect to BE)
 //   const updateNewCardInfo = {
 //     ...newCardInfo,
 //     card_id: null,
 //   };
 // };
+axios
+  .post(
+    "https://back-end-inspiration-board-coffee-lovers.onrender.com/boards/<board_id>/cards"
+  )
+  .then(() => {
+    const newCardsArray = [...selectedCards];
+    newCardsArray.push(newCardFormData);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+}
 
 const selectBoard = (id) => {
   const board = boardsData.find((board) => board.board_id === id);
@@ -178,14 +190,13 @@ const selectBoard = (id) => {
         
         <section>
           <NewBoardForm createNewBoard={createNewBoard} />
-          {/* <NewCardForm createNewCard={createNewCard} /> */}
+          <NewCardForm createNewCard={createNewCard} />
         </section>
         <section>
           <h2>Selected Board</h2>
           <h3>{selectedBoard.title}</h3>
           <p>{selectedBoard.owner}</p>
-        </section>
-        <section>
+        
           <h2>Boards</h2>
           <ol>
           {boardsData.map((board) => (
@@ -193,7 +204,7 @@ const selectBoard = (id) => {
           ))}
           </ol>
           <section className="cards__container">
-            <div className="card-items__containe">
+            <div className="card-items__container">
             <h2>Cards for {selectedBoard.title}</h2>
         <ol>{selectedCards.map((card) => (
         <Card key={card.card_id} card={card} onBoardSelect={setSelectedBoard} propShouldHappenOnBoardSelect={selectBoard} />

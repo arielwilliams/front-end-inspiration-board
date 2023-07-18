@@ -2,46 +2,57 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./NewCardForm.css";
 
-const INITIAL_FORM_DATA_FOR_CARD = {
+const initialCardFormData = {
   message: '',
-  card_id: '',
 };
 
 function NewCardForm(props) {
-    const [cardFormData, setCardFormData] = useState(INITIAL_FORM_DATA_FOR_CARD);
+    const [cardFormData, setCardFormData] = useState(initialCardFormData);
   
-    const anInputChanged = (evt, key) => {
+    // const anInputChanged = (evt, key) => {
 
-      console.log(evt)
+    //   console.log(evt)
       
-      const newCardFormData = {
-        ...cardFormData,
-        [key]: evt.target.value
-      };
+    //   const newCardFormData = {
+    //     ...cardFormData,
+    //     [key]: evt.target.value
+    //   };
   
-      setCardFormData(newCardFormData);
-    }
+    //   setCardFormData(newCardFormData);
+    // }
   
-    const handleFormSubmit = (event) => {
-      event.preventDefault();
+    const newCardFormData = (event) => {
+      // event.preventDefault();
       // props.createNewBoardForm(cardFormData);
-      // setCardFormData(INITIAL_FORM_DATA);
-      console.log('Successfully pressed add new card');
+      setCardFormData({...cardFormData,
+        [event.target.name]: event.target.value,
+        });
+      console.log('Successfully pressed add new card', cardFormData);
     }
-  
+    
+    const handleCardFormSubmit = event => {
+      event.preventDefault();
+      // new attempt
+      props.createNewCard(cardFormData);
+      console.log('handle form',cardFormData )
+      setCardFormData({
+        message:''
+      });
+    };
+        
     return (
       <section className="Card">
         <div className="card-div">
         <h2>Create New Card</h2>
-        <form className="stack" onSubmit={handleFormSubmit}>
-          <label htmlFor="cardMessage">Message:</label>
+        <form className="stack" onSubmit={handleCardFormSubmit}>
+          <label htmlFor="message">Message:</label>
           <input
             id="cardMessage"
+            // if we get a bug, try changing above to "message"
+            name="message"
             type="text"
             className="invalid-form-input"
-            onBlur={(evt) => anInputChanged(evt, 'message') } // onBlur calls anonymous func that then calls anInputChanged func. You pass in the evt into func, that other func manages use state.
-            // func anInputChanged responds to onBlur when we LEAVE that form element text box
-            // you LITERALLY have to get off of it/change focus in order to UPDATE value in text box
+            onChange={newCardFormData}
           />
           <section>
           <label htmlFor="cardPreview">Preview:</label>
@@ -50,9 +61,9 @@ function NewCardForm(props) {
           </p>
           
           <input type="submit" value="Add new Card" 
-                 className='btn'
+                className='btn'
                 //  disabled={message.length === 0 || message.length > 40}
-                 >
+                >
           </input>
           </section>
           

@@ -38,6 +38,7 @@ function App() {
   }]
 
   const [boardsData, setBoardsData] = useState(emptyBoardData);
+  const [selectedBoard, setSelectedBoard] = useState(emptyBoardData);
   // const [likedMessages, setLikedMessages] = useState(0);
   // NEXT STEPS ****************************
   // update our boardsData based on what we receive from BE request from boards
@@ -165,6 +166,19 @@ function App() {
 //   };
 // };
 
+const selectBoard = (id) => {
+  axios
+  .get(`https://back-end-inspiration-board-coffee-lovers.onrender.com/boards`)
+  .then((result)=>{
+    console.log(result.data)
+    setSelectedBoard(result.data);
+
+  })
+  .catch((error)=>{
+    console.log(error)
+  });
+};
+
   return (
     <div>
       <h1>Inspiration Board</h1>
@@ -177,12 +191,14 @@ function App() {
         </section>
         <section>
           <h2>Selected Board</h2>
+          <h3>{selectedBoard.title}</h3>
+          <p>{selectedBoard.owner}</p>
         </section>
         <section>
           <h2>Boards</h2>
           <ol>
           {boardsData.map((board) => (
-            <Board key={board.id} board={board} />
+            <Board key={board.id} board={board} onBoardSelect={setSelectedBoard} />
           ))}
           </ol>
         </section>

@@ -17,7 +17,8 @@ function App() {
 
   const emptyCardData = [{
     id: 0,
-    message: ''
+    message: '',
+    likes_count: 0,
   }]
 
   const [boardsData, setBoardsData] = useState(emptyBoardData);
@@ -90,16 +91,42 @@ function App() {
   const updateLikes = (cardId) => {
     const updatedCards = selectedCards.map((card) => {
       if (card.card_id === cardId) {
-        return {
+        const updatedCard = {
           ...card,
           likes_count: card.likes_count + 1, // Increment the likes count by 1
         };
+  
+        axios
+          .patch(`https://back-end-inspiration-board-coffee-lovers.onrender.com/cards/${cardId}`, {
+            likes_count: updatedCard.likes_count,
+          })
+          .then(() => {
+            // Fetch the updated card data from the server
+            axios
+              .get(`https://back-end-inspiration-board-coffee-lovers.onrender.com/cards/${cardId}`)
+              .then((response) => {
+                const updatedCardData = response.data;
+                // Update the selectedCards state with the updated card data
+                setCardsData((prevCards) =>
+                  prevCards.map((prevCard) => (prevCard.card_id === cardId ? updatedCardData : prevCard))
+                );
+              })
+              .catch((error) => {
+                console.log("Error fetching updated card data:", error);
+              });
+          })
+          .catch((error) => {
+            console.log("Error updating likes count:", error);
+          });
+  
+        return updatedCard;
       }
       return card;
     });
   
     setCardsData(updatedCards);
   };
+  
 
   const updateDelete = (cardId) => {
     // Send a DELETE request to the backend API to delete the card
@@ -176,6 +203,7 @@ function App() {
     }
   
     newCardFormData.board_id = selectedBoard.board_id;
+    newCardFormData.likes_count = 0;
   
     axios
       .post(
@@ -184,12 +212,34 @@ function App() {
       )
       .then((response) => {
         const createdCard = response.data;
-        setCardsData([...selectedCards, createdCard]);
+  
+        // Update the selectedCards state with the newly created card
+        setCardsData((prevCards) => [...prevCards, createdCard]);
+  
+        // Fetch the updated card data from the server
+        axios
+          .get(
+            `https://back-end-inspiration-board-coffee-lovers.onrender.com/cards/${createdCard.card_id}`
+          )
+          .then((response) => {
+            const updatedCard = response.data;
+  
+            // Update the selectedCards state with the updated card data
+            setCardsData((prevCards) =>
+              prevCards.map((card) =>
+                card.card_id === updatedCard.card_id ? updatedCard : card
+              )
+            );
+          })
+          .catch((error) => {
+            console.log("Error fetching updated card data:", error);
+          });
       })
       .catch((error) => {
         console.log("Error creating card:", error);
       });
   };
+  
   
 
 const selectBoard = (id) => {

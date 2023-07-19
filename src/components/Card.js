@@ -12,7 +12,7 @@ const Card = (props) => {
         // We want event handler function to do two things:
             // update component's internal state
             // update that information to SSOT
-        props.updateLikes(props.card.id);
+        props.updateLikes(props.card.card_id);
     }
 
 
@@ -25,7 +25,8 @@ const Card = (props) => {
         <section className="card-item">
             {/* if the card object exists AND it has a key called message then create this JSX */}
             {props.card && props.card.message &&
-                <li><p className='card-message'>{props.card.message}</p></li>
+                <li><p className='card-message'>{props.card.message}</p>
+                <p className="likes-count">{props.card.likes_count || 0}</p></li>
             }
             <ul className="card-controls">
                 {/* <li><p>{props.card.likesCount} ** </p></li> */}

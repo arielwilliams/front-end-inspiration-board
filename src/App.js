@@ -142,34 +142,28 @@ function App() {
   }
 
 
-const createNewCard = (newCardFormData) => {
-//   // add card_id as a unique key for flask (when we connect to BE)
-//   const updateNewCardInfo = {
-//     ...newCardInfo,
-//     card_id: null,
-//   };
-// };
-if (selectedBoard === undefined) {
-  console.log("selectedBoard undefined");
-  return;
-}
-
-newCardFormData.board_id = selectedBoard.id
-
-axios
-
-  .post(
-    `https://back-end-inspiration-board-coffee-lovers.onrender.com/cards`
-  )
-  .then(() => {
-    const newCardsArray = [...selectedCards];
-    newCardsArray.push(newCardFormData);
-  })
-  .catch((error) => {
-    console.log(error);
-    console.log("error in axios call" )
-  });
-}
+  const createNewCard = (newCardFormData) => {
+    if (!selectedBoard) {
+      console.log("No board selected");
+      return;
+    }
+  
+    newCardFormData.board_id = selectedBoard.board_id;
+  
+    axios
+      .post(
+        "https://back-end-inspiration-board-coffee-lovers.onrender.com/cards",
+        newCardFormData
+      )
+      .then((response) => {
+        const createdCard = response.data;
+        setCardsData([...selectedCards, createdCard]);
+      })
+      .catch((error) => {
+        console.log("Error creating card:", error);
+      });
+  };
+  
 
 const selectBoard = (id) => {
   const board = boardsData.find((board) => board.board_id === id);

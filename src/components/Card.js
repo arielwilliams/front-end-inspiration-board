@@ -38,9 +38,9 @@ const Card = (props) => {
 
 // msg, like count, +1 card item, delete
 Card.propTypes = {
-  message: PropTypes.string,
-  likesCount: PropTypes.func,
-  addOneLike: PropTypes.func,
+    message: PropTypes.string,
+    likesCount: PropTypes.func,
+    addOneLike: PropTypes.func,
 }
 
 

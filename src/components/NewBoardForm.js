@@ -4,50 +4,75 @@ import "./NewBoardForm.css";
 import Board from "./Board";
 
 const initialBoardFormData = {
-  title: '',
-  owner: ''
+  title: "",
+  owner: "",
 };
 
 function NewBoardForm(props) {
-    const [boardFormData, setBoardFormData] = useState(initialBoardFormData);
-    // const NewBoardForm = (props) => {
-    
-      // const anInputChanged = (event) => {}
-// 
-      // console.log(event)
-  
-      // this might have to do with preview so come back to this later for that feature
-      // if (event.target.owner === "owner" && event.target.value < 0) {
-      //   return
-      // }
-      
-      const newBoardFormData = event => {
-        setBoardFormData({...boardFormData,
-        [event.target.name]: event.target.value,
-        });
-        console.log('new board form',boardFormData )
-      // setBoardFormData(newBoardFormData);
-    };
-  
-    const handleFormSubmit = event => {
-      event.preventDefault();
-      // new attempt
-      props.createNewBoard(boardFormData);
-      console.log('handle form',boardFormData )
-      setBoardFormData({
-        title:'',
-        owner:''});
-      // setBoardFormData(boardFormData);
+  const [boardFormData, setBoardFormData] = useState(initialBoardFormData);
 
-      // props.createNewBoardForm(boardFormData);
-      // setBoardFormData(setBoardFormData);
-      console.log('Successfully pressed add new board');
-    };
-  
-    return (
-      <section className="Board">
-        <h2>Create New Board</h2>
-        <form className="stack" onSubmit={handleFormSubmit}>
+  // const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
+  // const toggleNewBoardForm = () => {setIsBoardFormVisible(!isBoardFormVisible)}
+
+  // const NewBoardForm = (props) => {
+
+  // const anInputChanged = (event) => {}
+  //
+  // console.log(event)
+
+  // this might have to do with preview so come back to this later for that feature
+  // if (event.target.owner === "owner" && event.target.value < 0) {
+  //   return
+  // }
+
+  const [isVisible, setIsVisible] = useState(true);
+
+  const toggleBoardFormState = () => {
+    setIsVisible(!isVisible);
+    // if form is visible the name of the button should be "hide"
+    // if form is not visible the name of the button should be "show"
+
+    // onClick toggle ... if true then isVisible
+
+    console.log("hide it button clicked");
+  };
+
+  // make css class rule to outermost tag for if visible (display None)
+  // have class display whatever block we want.
+  // *********** toggle css class in the outermost JSX ************
+  // move this logic to a higher up component, to whatever component is rendering NewBoardForm ***
+  //
+
+  const newBoardFormData = (event) => {
+    setBoardFormData({
+      ...boardFormData,
+      [event.target.name]: event.target.value,
+    });
+    console.log("new board form", boardFormData);
+    // setBoardFormData(newBoardFormData);
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    // new attempt
+    props.createNewBoard(boardFormData);
+    console.log("handle form", boardFormData);
+    setBoardFormData({
+      title: "",
+      owner: "",
+    });
+    // setBoardFormData(boardFormData);
+
+    // props.createNewBoardForm(boardFormData);
+    // setBoardFormData(setBoardFormData);
+    console.log("Successfully pressed add new board");
+  };
+
+  return (
+    <section className="Board">
+      <h2>Create New Board</h2>
+      {isVisible ? (
+        <form onSubmit={handleFormSubmit}>
           <label htmlFor="title">Title:</label>
           <input
             id="boardTitle"
@@ -57,33 +82,44 @@ function NewBoardForm(props) {
             onChange={newBoardFormData}
           />
           <section>
-          <label htmlFor="owner">Owner Name: </label>
-          <input
-            id="board"
-            name="owner"
-            type="text"
-            className="invalid-form-input"
-            onChange={newBoardFormData}
-          />  </section>
-      
+            <label htmlFor="owner">Owner Name: </label>
+            <input
+              id="board"
+              name="owner"
+              type="text"
+              className="invalid-form-input"
+              onChange={newBoardFormData}
+            />{" "}
+          </section>
+
           <label htmlFor="boardPreview">Preview:</label>
           <p>
-          {boardFormData.title} - {boardFormData.owner}
+            {boardFormData.title} - {boardFormData.owner}
           </p>
-          <div className ='submit-form'>
-          <input type="submit" value="Add new Board" 
-                  className='btn'
-                  // disabled={title.length === 0 || title.length > 40}
-                  >
-          </input>
+          <div className="submit-form">
+            <input
+              type="submit"
+              value="Add new Board"
+              className="btn"
+              // disabled={title.length === 0 || title.length > 40}
+            ></input>
           </div>
         </form>
-      </section>
-    )
-  }
-  
-  NewBoardForm.propTypes = {
-    createNewBoard: PropTypes.func.isRequired
-  }
-  
-  export default NewBoardForm;
+      ) : null}
+      <button
+        type="button"
+        onClick={toggleBoardFormState}
+        value="isVisible"
+        className="new-board-form__toggle-btn"
+      >
+        {isVisible ? "Hide it" : "Show it"}
+      </button>
+    </section>
+  );
+}
+
+NewBoardForm.propTypes = {
+  createNewBoard: PropTypes.func.isRequired,
+};
+
+export default NewBoardForm;

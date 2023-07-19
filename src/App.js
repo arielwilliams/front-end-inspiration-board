@@ -142,7 +142,7 @@ function App() {
   }
 
 
-const createNewCard = (newCardFormData) => {
+const createNewCard = (newCardFormData, board) => {
 //   // add card_id as a unique key for flask (when we connect to BE)
 //   const updateNewCardInfo = {
 //     ...newCardInfo,
@@ -151,7 +151,7 @@ const createNewCard = (newCardFormData) => {
 // };
 axios
   .post(
-    "https://back-end-inspiration-board-coffee-lovers.onrender.com/boards/<board_id>/cards"
+    `https://back-end-inspiration-board-coffee-lovers.onrender.com/boards/${board.board_id}/cards`
   )
   .then(() => {
     const newCardsArray = [...selectedCards];
@@ -159,6 +159,7 @@ axios
   })
   .catch((error) => {
     console.log(error);
+    console.log("error in axios call" )
   });
 }
 
@@ -190,7 +191,7 @@ const selectBoard = (id) => {
         
         <section>
           <NewBoardForm createNewBoard={createNewBoard} />
-          <NewCardForm createNewCard={createNewCard} />
+          <NewCardForm createNewCard={(cardData) => createNewCard(cardData, selectedBoard)} />
         </section>
         <section>
           <h2>Selected Board</h2>

@@ -1,15 +1,15 @@
 .card-item {
-    /* font-family: "Homemade Apple", cursive; */
-    font-family: "Chalkduster", fantasy;
-    background-color: rgb(255, 248, 165);
-    box-shadow: -10px 7px 7px lightgrey;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;    
-    min-height: 200px;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    flex-direction: column;
+  /* font-family: "Homemade Apple", cursive; */
+  font-family: "Chalkduster", fantasy;
+  background-color: rgb(255, 248, 165);
+  box-shadow: -10px 7px 7px lightgrey;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  min-height: 200px;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  flex-direction: column;
 }

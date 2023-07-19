@@ -116,7 +116,7 @@ function NewBoardForm(props) {
         value="isVisible"
         className="new-board-form__toggle-btn"
       >
-        {isVisible ? "Hide it" : "Show it"}
+        {isVisible ? "Hide New Board Form" : "Show New Board Form"}
       </button>
     </section>
   );

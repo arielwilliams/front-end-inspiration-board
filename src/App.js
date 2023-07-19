@@ -87,6 +87,33 @@ function App() {
   //     }
   //   });
   // };
+  const updateLikes = (cardId) => {
+    const updatedCards = selectedCards.map((card) => {
+      if (card.card_id === cardId) {
+        return {
+          ...card,
+          likes_count: card.likes_count + 1, // Increment the likes count by 1
+        };
+      }
+      return card;
+    });
+  
+    setCardsData(updatedCards);
+  };
+
+  const updateDelete = (cardId) => {
+    // Send a DELETE request to the backend API to delete the card
+    axios
+      .delete(`https://back-end-inspiration-board-coffee-lovers.onrender.com/cards/${cardId}`)
+      .then(() => {
+        // If the deletion is successful, update the selectedCards state by filtering out the deleted card
+        const updatedCards = selectedCards.filter((card) => card.card_id !== cardId);
+        setCardsData(updatedCards);
+      })
+      .catch((error) => {
+        console.log("Error deleting card:", error);
+      });
+  };
 
   // const [selectedBoard, setselectedBoard]  = useState({
   //   title: '',
@@ -188,9 +215,6 @@ const selectBoard = (id) => {
     <div>
       <h1>Inspiration Board</h1>
       <div className="form-row">
-        {/* <Card listOfCards={Card} updateLikes={updateLikes}></Card> */}
-        {/* <Card listOfCards={selectedCards}></Card> */}
-        
         <section>
           <NewBoardForm createNewBoard={createNewBoard} />
           <NewCardForm createNewCard= {createNewCard} />
@@ -210,7 +234,7 @@ const selectBoard = (id) => {
             <div className="card-items__container">
             <h2>Cards for {selectedBoard.title}</h2>
         <ol>{selectedCards.map((card) => (
-        <Card key={card.card_id} card={card} onBoardSelect={setSelectedBoard} propShouldHappenOnBoardSelect={selectBoard} />
+        <Card key={card.card_id} card={card} updateLikes={updateLikes} updateDelete={updateDelete} onBoardSelect={setSelectedBoard} propShouldHappenOnBoardSelect={selectBoard} />
         ))}
         </ol>
         </div>

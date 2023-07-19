@@ -12,14 +12,14 @@ const Card = (props) => {
         // We want event handler function to do two things:
             // update component's internal state
             // update that information to SSOT
-        props.updateLikes(props.id);
+        props.updateLikes(props.card.id);
     }
 
 
     const toggleDelete = () => {
-        console.log("toggle Delete is called!")
-        props.updateDelete(props.id)
-    }
+        console.log("toggle Delete is called!");
+        props.updateDelete(props.card.card_id); // Access card_id directly to pass it in app.js
+    };
 
     return (
         <section className="card-item">
@@ -29,7 +29,11 @@ const Card = (props) => {
             }
             <ul className="card-controls">
                 {/* <li><p>{props.card.likesCount} ** </p></li> */}
-                <li><p onClick={() => props.addOneLike(props.card)}> +1</p></li>
+                <li><p onClick={toggleLikes}>+1</p></li>
+                {/* <li><p onClick={() => props.addOneLike(props.card)}> +1</p></li> */}
+                <li>
+                <p onClick={toggleDelete}>Delete</p> {/* Change 4: Add onClick event for toggleDelete */}
+                </li>
             </ul>
         </section>
     );
@@ -38,10 +42,13 @@ const Card = (props) => {
 
 // msg, like count, +1 card item, delete
 Card.propTypes = {
+    card: PropTypes.shape({
+    id: PropTypes.number,
     message: PropTypes.string,
-    likesCount: PropTypes.func,
-    addOneLike: PropTypes.func,
-}
+    }),
+    updateLikes: PropTypes.func,
+    updateDelete: PropTypes.func,
+};
 
 
 export default Card;

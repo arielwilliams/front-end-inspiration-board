@@ -16,17 +16,16 @@ function App() {
     },
   ];
 
-  const emptyCardData = [
-    {
-      id: 0,
-      message: "",
-      likes_count: 0,
-    },
-  ];
+  const emptyCardData = {
+    id: 0,
+    message: "",
+    likes_count: 0,
+  };
 
   const [boardsData, setBoardsData] = useState(emptyBoardData);
   const [selectedBoard, setSelectedBoard] = useState(emptyBoardData);
   const [selectedCards, setCardsData] = useState(emptyCardData);
+  console.log({ selectedBoard });
   // const [likedMessages, setLikedMessages] = useState(0);
   // NEXT STEPS ****************************
   // update our boardsData based on what we receive from BE request from boards
@@ -285,7 +284,8 @@ function App() {
           <h2>Selected Board</h2>
           <h3>{selectedBoard.title}</h3>
           <p>{selectedBoard.owner}</p>
-
+        </section>
+        <section>
           <h2>Boards</h2>
           <ol>
             {boardsData.map((board) => (
@@ -299,19 +299,25 @@ function App() {
           </ol>
           <section className="cards__container">
             <div className="card-items__container">
-              <h2>Cards for {selectedBoard.title}</h2>
-              <ol>
-                {selectedCards.map((card) => (
-                  <Card
-                    key={card.card_id}
-                    card={card}
-                    updateLikes={updateLikes}
-                    updateDelete={updateDelete}
-                    onBoardSelect={setSelectedBoard}
-                    propShouldHappenOnBoardSelect={selectBoard}
-                  />
-                ))}
-              </ol>
+              {selectedBoard[0]?.id !== 0 && (
+                <>
+                  <h2>Cards for {selectedBoard.title}</h2>
+                  {selectedCards.length > 0 && (
+                    <ol>
+                      {selectedCards?.map((card) => (
+                        <Card
+                          key={card.card_id}
+                          card={card}
+                          updateLikes={updateLikes}
+                          updateDelete={updateDelete}
+                          onBoardSelect={setSelectedBoard}
+                          propShouldHappenOnBoardSelect={selectBoard}
+                        />
+                      ))}
+                    </ol>
+                  )}
+                </>
+              )}
             </div>
           </section>
         </section>

@@ -142,16 +142,24 @@ function App() {
   }
 
 
-const createNewCard = (newCardFormData, board) => {
+const createNewCard = (newCardFormData) => {
 //   // add card_id as a unique key for flask (when we connect to BE)
 //   const updateNewCardInfo = {
 //     ...newCardInfo,
 //     card_id: null,
 //   };
 // };
+if (selectedBoard === undefined) {
+  console.log("selectedBoard undefined");
+  return;
+}
+
+newCardFormData.board_id = selectedBoard.id
+
 axios
+
   .post(
-    `https://back-end-inspiration-board-coffee-lovers.onrender.com/boards/${board.board_id}/cards`
+    `https://back-end-inspiration-board-coffee-lovers.onrender.com/cards`
   )
   .then(() => {
     const newCardsArray = [...selectedCards];
@@ -191,7 +199,7 @@ const selectBoard = (id) => {
         
         <section>
           <NewBoardForm createNewBoard={createNewBoard} />
-          <NewCardForm createNewCard={(cardData) => createNewCard(cardData, selectedBoard)} />
+          <NewCardForm createNewCard= {createNewCard} />
         </section>
         <section>
           <h2>Selected Board</h2>

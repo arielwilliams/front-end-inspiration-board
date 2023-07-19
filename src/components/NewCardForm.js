@@ -4,6 +4,7 @@ import "./NewCardForm.css";
 
 const initialCardFormData = {
   message: '',
+  likes_count: 0,
 };
 
 function NewCardForm(props) {
@@ -36,7 +37,8 @@ function NewCardForm(props) {
       props.createNewCard(cardFormData);
       console.log('handle form',cardFormData )
       setCardFormData({
-        message:''
+        message:'',
+        likes_count: 0
       });
     };
         

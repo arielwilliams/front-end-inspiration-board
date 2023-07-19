@@ -33,17 +33,17 @@ h2 {
 
 .boards__container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-row: 1;
 }
 
 .boards__list {
   max-height: 9rem;
   min-height: 9rem;
   max-width: 3rem;
-  min-width: 9rem;
+  min-width: 3rem;
   overflow: scroll;
   margin-left: 3.5rem;
-  border: black dashed 1px;
+  border: black solid 1px;
 }
 
 /* .new-board-form__container,
@@ -142,7 +142,7 @@ footer {
   display: flex;
 }
 .submit-form {
-  text-align: center;
+  text-align: right;
 }
 .btn {
   width: 100%;

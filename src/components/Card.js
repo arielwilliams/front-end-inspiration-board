@@ -2,10 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Card.css";
 
-// The responsibility of this component is to be a reusable UI element that displays an Animal's
-// - name
-// - species
-// - photo
 const Card = (props) => {
   const toggleLikes = () => {
     // We want event handler function to do two things:
@@ -34,7 +30,6 @@ const Card = (props) => {
         {/* <li><p onClick={() => props.addOneLike(props.card)}> +1</p></li> */}
         <li>
           <p onClick={toggleDelete}>Delete</p>{" "}
-          {/* Change 4: Add onClick event for toggleDelete */}
         </li>
       </ul>
     </section>

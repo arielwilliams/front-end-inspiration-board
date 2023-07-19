@@ -11,20 +11,6 @@ const initialBoardFormData = {
 function NewBoardForm(props) {
   const [boardFormData, setBoardFormData] = useState(initialBoardFormData);
 
-  // const [isBoardFormVisible, setIsBoardFormVisible] = useState(true);
-  // const toggleNewBoardForm = () => {setIsBoardFormVisible(!isBoardFormVisible)}
-
-  // const NewBoardForm = (props) => {
-
-  // const anInputChanged = (event) => {}
-  //
-  // console.log(event)
-
-  // this might have to do with preview so come back to this later for that feature
-  // if (event.target.owner === "owner" && event.target.value < 0) {
-  //   return
-  // }
-
   const [isVisible, setIsVisible] = useState(true);
 
   const toggleBoardFormState = () => {
@@ -41,7 +27,6 @@ function NewBoardForm(props) {
   // have class display whatever block we want.
   // *********** toggle css class in the outermost JSX ************
   // move this logic to a higher up component, to whatever component is rendering NewBoardForm ***
-  //
 
   const newBoardFormData = (event) => {
     setBoardFormData({
@@ -49,12 +34,11 @@ function NewBoardForm(props) {
       [event.target.name]: event.target.value,
     });
     console.log("new board form", boardFormData);
-    // setBoardFormData(newBoardFormData);
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    // new attempt
+
     props.createNewBoard(boardFormData);
     console.log("handle form", boardFormData);
     setBoardFormData({
@@ -100,6 +84,7 @@ function NewBoardForm(props) {
           <p>
             {boardFormData.title} - {boardFormData.owner}
           </p>
+
           <div className="submit-form">
             <input
               type="submit"
@@ -110,14 +95,16 @@ function NewBoardForm(props) {
           </div>
         </form>
       ) : null}
-      <button
-        type="button"
-        onClick={toggleBoardFormState}
-        value="isVisible"
-        className="new-board-form__toggle-btn"
-      >
-        {isVisible ? "Hide New Board Form" : "Show New Board Form"}
-      </button>
+      <span>
+        <button
+          type="button"
+          onClick={toggleBoardFormState}
+          value="isVisible"
+          className="new-board-form__toggle-btn"
+        >
+          {isVisible ? "Hide New Board Form" : "Show New Board Form"}
+        </button>
+      </span>
     </section>
   );
 }

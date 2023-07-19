@@ -10,21 +10,7 @@ const initialCardFormData = {
 function NewCardForm(props) {
   const [cardFormData, setCardFormData] = useState(initialCardFormData);
 
-  // const anInputChanged = (evt, key) => {
-
-  //   console.log(evt)
-
-  //   const newCardFormData = {
-  //     ...cardFormData,
-  //     [key]: evt.target.value
-  //   };
-
-  //   setCardFormData(newCardFormData);
-  // }
-
   const newCardFormData = (event) => {
-    // event.preventDefault();
-    // props.createNewBoardForm(cardFormData);
     setCardFormData({
       ...cardFormData,
       [event.target.name]: event.target.value,

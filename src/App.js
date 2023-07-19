@@ -26,21 +26,7 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState(emptyBoardData);
   const [selectedCards, setCardsData] = useState(emptyCardData);
   console.log({ selectedBoard });
-  // const [likedMessages, setLikedMessages] = useState(0);
-  // NEXT STEPS ****************************
-  // update our boardsData based on what we receive from BE request from boards
-  // just use pseudocode data for now until we connect to BE
 
-  // const handleLikeChange = (isLiked) => {
-  //   if (isLiked) {
-  //     setLikedMessages((prevCount) => prevCount + 1);
-  //   }
-  // };
-
-  // ********** ISSUE: THE LOAD BOARDS IS WORKING AND WE CAN PRINT OUT THE BOARDS
-  // BUT IT DOES NOT *UPDATE* IN THE USE STATE
-  // LOOKS LIKE THE ISSUE IS IN THE USESTATE BECAUSE IT DOESN'T UPDATE
-  // *********** THIS IS WHERE WE NEED TO PICK UP FROM *****************
   const loadBoards = () => {
     axios
       .get(
@@ -72,21 +58,6 @@ function App() {
     loadBoards();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(boardsData);
-  // }, [boardsData]);
-
-  // COMMENT BACK IN LATER WHEN WE WANT LIKES FUNCTIONALITY
-  // const updateLikes = (cardId) => {
-  //   const updatedBoards = cards.map((card) => {
-  //     if (card.id === cardId) {
-  //       return {
-  //         ...card,
-  //         isLiked: !card.isLiked,
-  //       };
-  //     }
-  //   });
-  // };
   const updateLikes = (cardId) => {
     const updatedCards = selectedCards.map((card) => {
       if (card.card_id === cardId) {
@@ -151,43 +122,11 @@ function App() {
       });
   };
 
-  // const [selectedBoard, setselectedBoard]  = useState({
-  //   title: '',
-  //   owner: '',
-  //   board_id: '',
-  // }
-
-  // );
-
   //  WE ONLY NEED USEEFFECT FOR BOARDS -> TO DISPLAY ALL BOARDS ON DOM, THAT IS WHAT USEEFFECT IS FOR
   // USE EFFECT IS USED FOR MAKING API CALLS EXTERNALLY, IT GETS YOU THE INFO
   // grab the boards -> you want to set local state that is effected by that state to reflect the new info
 
-  // // NEED TO UPDATE THIS WHEN WE CONNECT TO BE
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       "https://back-end-inspiration-board-coffee-lovers.onrender.com/boards/${board_id}/cards"
-  //     )
-  //     .then((response) => {
-  //       const initialBoardFormData = [];
-  //       response.data.forEach((board) => {
-  //         initialBoardFormData.push(board);
-  //       });
-  //       setBoardsData(initialBoardFormData);
-  //     })
-  //     .catch((error) => {
-  //       console.log("error", error);
-  //     });
-  // }, []);
-
   const createNewBoard = (newBoardFormData) => {
-    // add board_id as a unique key for flask (when we connect to BE)
-    // const updateNewBoardInfo = {
-    //   ...newBoardFormData,
-    //   board_id: null,
-    // };
-
     axios
       .post(
         "https://back-end-inspiration-board-coffee-lovers.onrender.com/boards",
@@ -197,8 +136,6 @@ function App() {
       .then(() => {
         const newBoardsArray = [...boardsData];
         newBoardsArray.push(newBoardFormData);
-        // setBoardsData([...boardsData, newBoardsArray ]);
-        // setBoardsData(newBoardsArray);
         loadBoards();
       })
       .catch((error) => {

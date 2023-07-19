@@ -78,6 +78,8 @@ function NewBoardForm(props) {
             id="boardTitle"
             name="title"
             type="text"
+            value={boardFormData.title}
+            required
             className="invalid-form-input"
             onChange={newBoardFormData}
           />
@@ -87,6 +89,8 @@ function NewBoardForm(props) {
               id="board"
               name="owner"
               type="text"
+              value={boardFormData.owner}
+              required
               className="invalid-form-input"
               onChange={newBoardFormData}
             />{" "}
